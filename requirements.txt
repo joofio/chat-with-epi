@@ -1,0 +1,11 @@
+openai
+fhirpathpy
+flask
+python-dotenv
+gunicorn
+flask
+requests
+fhir.resources
+ollama
+beautifulsoup4
+markdown
