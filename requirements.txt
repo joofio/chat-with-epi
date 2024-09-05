@@ -9,3 +9,4 @@ fhir.resources
 ollama
 beautifulsoup4
 markdown
+groq

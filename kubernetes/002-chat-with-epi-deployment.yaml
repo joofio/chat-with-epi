@@ -1,20 +1,20 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: external-summary-lens-python
+  name: chat-with-epi
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: external-summary-lens-python
+      app: chat-with-epi
   template:
     metadata:
       labels:
-        app: external-summary-lens-python
+        app: chat-with-epi
     spec:
       containers:
-      - name: external-summary-lens-python
-        image: gravitate-registry.cr.de-fra.ionos.com/external-summary-lens-python:devserver
+      - name: chat-with-epi
+        image: gravitate-registry.cr.de-fra.ionos.com/chat-with-epi:latest
         imagePullPolicy: Always
         env:
         - name: SERVER_URL
@@ -23,8 +23,5 @@ spec:
           value: "http://tinman.lst:11434"
         - name: OPENAI_KEY
           value: ""
-        ports:
-        - containerPort: 80
-          protocol: TCP
       restartPolicy: Always
 status: {}

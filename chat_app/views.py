@@ -66,6 +66,6 @@ def lens_app(bundleid=None):
         medications,
         question,
         epi,
-        model="gorq-llama3-70",
+        model="llama3",
     )
     return markdown.markdown(chated["response"])
