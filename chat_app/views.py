@@ -22,8 +22,8 @@ def lens_app(bundleid=None):
     ips = None
 
     patientIdentifier = request.args.get("patientIdentifier", "")
-    model = request.args.get("model", "")
-    question = request.args.get("question", "")
+    model = request.args.get("model", "llama3")  # defautl
+    question = request.args.get("question", None)
 
     data = request.json
     epibundle = data.get("epi")
@@ -36,7 +36,8 @@ def lens_app(bundleid=None):
     # preprocessed_bundle, ips = separate_data(bundleid, patientIdentifier)
     if epibundle is None and bundleid is None:
         return "Error: missing EPI", 404
-
+    if question is None:
+        return "Error: missing Question", 404
     if epibundle is None:
         print("epibundle is none")
         # print(epibundle)
@@ -58,14 +59,6 @@ def lens_app(bundleid=None):
 
     # Return the JSON response
     chated = medicationchat(
-        language,
-        drug_name,
-        gender,
-        age,
-        diagnostics,
-        medications,
-        question,
-        epi,
-        model="llama3",
+        language, drug_name, gender, age, diagnostics, medications, question, epi, model
     )
     return markdown.markdown(chated["response"])
