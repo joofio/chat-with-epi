@@ -4,6 +4,7 @@ metadata:
   name: chat-with-epi
   labels:
     name: chat-with-epi
+    eu.gravitate-health.fosps.chatbot: "true"
 spec:
   selector:
     app: chat-with-epi
