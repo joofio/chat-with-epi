@@ -162,3 +162,9 @@ cython_debug/
 .DS_Store
 
 .vscode/
+
+98
+
+per https://github.com/github/gitignore/blob/master/Python.gitignore
+
+venv/

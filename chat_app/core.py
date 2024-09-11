@@ -93,7 +93,7 @@ def process_bundle(bundle):
 
 
 def process_ips(ips):
-    print(ips)
+    #print(ips)
     pat = evaluate(ips, "Bundle.entry.where(resource.resourceType=='Patient')", [])[0][
         "resource"
     ]
@@ -166,7 +166,7 @@ def medicationchat(
     epi,
     model="llama3",
 ):
-    print(model)
+    #print(model)
     epi_text = transform_fhir_epi(epi)
     # epi_text = [k + v for k, v in epi[0].items()]
 
@@ -181,7 +181,7 @@ def medicationchat(
         + " and this is totally mandatory. Otherwise I will not understand."
         + "Context:\n"
         + epi_text
-        + "\n\Question:\n\n"
+        + "\n\nQuestion:\n\n"
         + question
         + "\n\nAnswer:\n\n"
     )
@@ -196,7 +196,7 @@ def medicationchat(
         4. You must be direct and not lose time on introducing the summary, and MUST NOT GREET the patient.\n
         """
     )
-    print(prompt)
+    #print(prompt)
     if "llama3" == model:
         #   print("prompt is:" + prompt)
 

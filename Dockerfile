@@ -5,7 +5,7 @@ RUN mkdir /app
 WORKDIR /app
 
 
-COPY lens_app /app/lens_app
+COPY chat_app /app/chat_app
 
 ENV VIRTUAL_ENV=/usr/local
 RUN python3 -m pip install pip --upgrade
@@ -15,7 +15,7 @@ COPY requirements.txt /app
 COPY run.py /app
 COPY gunicorn.sh /app
 
-RUN uv pip install -r requirements.txt
+RUN uv pip install --system -r requirements.txt
 
 EXPOSE 80
 
