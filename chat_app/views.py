@@ -1,3 +1,4 @@
+import json
 from flask import render_template, request, jsonify
 from chat_app import app
 import requests
@@ -50,11 +51,20 @@ def lens_app(bundleid=None):
 
     print(SERVER_URL)
     if ips is None:
-        # print(ips)
-        ips = requests.get(
-            SERVER_URL + "ips/api/fhir/Patient/$summary?identifier=" + patientIdentifier
-        ).json()
-    # print(ips)
+        payload = json.dumps({
+            "resourceType" : "Parameters",
+            "id" : "Focusing IPS request",
+            "parameter" : [{
+                "name" : "identifier",
+                "valueIdentifier" : {"value": patientIdentifier}
+            }]
+        })
+        headers = {
+            "Content-Type": "application/json"
+        }
+        ips_url = SERVER_URL + "ips/api/fhir/Patient/$summary"
+        response = requests.request("POST", ips_url, headers=headers, data=payload)
+        ips = response.json()
     gender, age, diagnostics, medications = process_ips(ips)
 
     # Return the JSON response
