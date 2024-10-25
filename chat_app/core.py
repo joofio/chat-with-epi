@@ -93,7 +93,7 @@ def process_bundle(bundle):
 
 
 def process_ips(ips):
-    #print(ips)
+    # print(ips)
     pat = evaluate(ips, "Bundle.entry.where(resource.resourceType=='Patient')", [])[0][
         "resource"
     ]
@@ -166,7 +166,7 @@ def medicationchat(
     epi,
     model="llama3",
 ):
-    #print(model)
+    # print(model)
     epi_text = transform_fhir_epi(epi)
     # epi_text = [k + v for k, v in epi[0].items()]
 
@@ -176,9 +176,9 @@ def medicationchat(
     lang = LANGUAGE_MAP[language]
     prompt = (
         "Answer the question based on the context below. If you don't know the answer based on the context provided below, just respond with 'I don't know' instead of making up an answer. Return just the answer to the question, don't add anything else. Don't start your response with the word 'Answer:'. Make sure your response is in markdown format\n\n"
-        + "You must answer in "
+        + "You can only speak and answer in "
         + lang
-        + " and this is totally mandatory. Otherwise I will not understand."
+        + " language and this is totally mandatory. Otherwise I will not understand."
         + "Context:\n"
         + epi_text
         + "\n\nQuestion:\n\n"
@@ -192,11 +192,17 @@ def medicationchat(
         + lang
         + """ \n
         2. You must take into account the patient information. \n
-        3. You MUST be impersonal and refer to the patient as a person, but NEVER for its name.\n
-        4. You must be direct and not lose time on introducing the summary, and MUST NOT GREET the patient.\n
+        3. You can only speak in """
+        + lang
+        + """ only and this is mandatory \n
+        4. You MUST be impersonal and refer to the patient as a person, but NEVER for its name.\n
+        5. You must be direct and MUST NOT GREET the patient.\n
+        6. Translate any other language to the """
+        + lang
+        + """ language whenever possible.
         """
     )
-    #print(prompt)
+    # print(prompt)
     if "llama3" == model:
         #   print("prompt is:" + prompt)
 

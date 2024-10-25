@@ -10,7 +10,7 @@ async function sendChat() {
 
     try {
         // Start the POST request to send the message
-        const response = await fetch('/chat/bundlepackageleaflet-en-94a96e39cfdcd8b378d12dd4063065f9?patientIdentifier=Cecilia-1', {
+        const response = await fetch('/chat/bundlepackageleaflet-es-94a96e39cfdcd8b378d12dd4063065f9?patientIdentifier=Cecilia-1', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
